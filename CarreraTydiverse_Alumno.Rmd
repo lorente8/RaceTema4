@@ -138,59 +138,70 @@ glimpse(cran)
 #cargamos lalibreria dplyr
 library(dplyr)
 #elegimos las variables `ip_id, package, country`
-select(cran, ip_id, package, country)
+cran %>%
+  select( ip_id, package, country)
 
 ```
 5. Elige todas las variables entre `r_arch y country` 
 ```{r}
 #seleccionamos todas las variables entre r_arch y country
-select(cran, r_arch:country)
+cran %>%
+  select(r_arch:country)
 ```
 5.2 Puedes usar el signo (-) para no coger una columna determinada. Selecciona todas las columnas menos las que están entre `date y size` 
 ```{r}
 #Seleccionamos todas las columnas menos las que están entre date y size
-select(cran, -date:-size)
+cran %>%
+  select(-date:-size)
 
 ```
 6. Elige aquellos registros en los que se haya descargado el paquete `plotly`, desde un sistema que ejecuta la versión de R 3.5.1
 ```{r}
-filter(cran, package == "plotly" & r_arch == "3.5.1")
+cran %>%
+  filter(package == "plotly" & r_arch == "3.5.1")
 
 
 ```
 6.2 Elige aquellas descargas realizadas desde España (ES), con versiones de R superiores a la 3.4.0
 ```{r}
-filter(cran, country == "ES" & r_arch > "3.4.0")
+cran %>%
+  filter( country == "ES" & r_arch > "3.4.0")
 ```
 
 7. Elige aquellas descargas realizadas desde España (ES), o Portugal (PT).
 ```{r}
-filter(cran, country %in% c("ES", "PT"))
+cran %>%
+  filter(country %in% c("ES", "PT"))
 
 
 ```
 
 8. Elige aquellas descargas cuyo tamaño supera los 100500 bytes desde un sistema operativo  `linux-gnu`.
 ```{r}
-filter(cran, size > 100500 & r_os == "linux-gnu")
+cran %>%
+  filter( size > 100500 & r_os == "linux-gnu")
 ```
 9. Elige aquellas descargas en las que la versión del sistema operativo no está vacía.
 ```{r}
 #elegir la versión del sistema operativo no está vacía
-filter(cran, nchar(r_os) > 0)
+cran %>%
+  filter(nchar(r_os) > 0)
 ```
 10. Almacena en `cran2` todas las columnas entre `size` y `ip_id`. 
 ```{r}
 #guardamos en la variable cran
-cran2 <- select(cran, size:ip_id)
+cran2 <- cran %>%
+    select( size:ip_id)
 ```
 11. Ordena `cran2` en orden ascendente según la variable `ip_id`.
 ```{r}
-arrange(cran2, ip_id)
+cran2 %>%
+  arrange( ip_id)
 ```
 12. Ordena `cran2` en orden descendente según la variable `ip_id`.
 ```{r}
-
+cran2 %>%
+  arrange(desc(ip_id))
 ```
 12. Ordena `cran2` según los valores de `package e ip_id`.
 ```{r}
