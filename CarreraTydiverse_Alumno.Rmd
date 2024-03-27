@@ -181,7 +181,8 @@ filter(cran, nchar(r_os) > 0)
 ```
 10. Almacena en `cran2` todas las columnas entre `size` y `ip_id`. 
 ```{r}
-
+#guardamos en la variable cran
+cran2 <- select(cran, size:ip_id)
 ```
 11. Ordena `cran2` en orden ascendente según la variable `ip_id`.
 ```{r}
