@@ -165,7 +165,7 @@ filter(cran, country == "ES" & r_arch > "3.4.0")
 
 7. Elige aquellas descargas realizadas desde España (ES), o Portugal (PT).
 ```{r}
-
+filter(cran, country %in% c("ES", "PT"))
 
 
 ```
